@@ -1,0 +1,14 @@
+<script>
+    const eventSource = new EventSource('http://localhost:8080/sse/subscribe/12345');
+
+    eventSource.onmessage = function(event) {
+        console.log("New message received: ", event.data);
+        document.getElementById("messageDisplay").innerText = event.data;
+    };
+
+    eventSource.onerror = function(event) {
+        console.error("Error occurred: ", event);
+    };
+</script>
+
+<div id="messageDisplay">Waiting for message...</div>
